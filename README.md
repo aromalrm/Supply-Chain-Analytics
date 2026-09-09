@@ -1,93 +1,105 @@
-# Moving from Complexity to Clarity in Supply Chain
-![](https://github.com/poojapatel26/Supply-Chain-Analytics/blob/main/Tableau_Dashboard.png)
+# Supply Chain Analytics
 
-This is a supply chain analytics project. In which conducted an analysis of supply chain inefficiencies, and developed informative dashboards to inform business stakeholders of potential issues, along with proposing strategic business enhancements.
+![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)
+![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-F37626?logo=jupyter&logoColor=white)
+![Pandas](https://img.shields.io/badge/Pandas-Data%20Analysis-150458?logo=pandas&logoColor=white)
 
-**Blog Post** : [Here](https://medium.com/@poojapatel26/moving-from-complexity-to-clarity-in-supply-chain-d9d7db66f776)
+An exploratory supply-chain analysis of orders, shipments, inventory, and warehouse fulfillment. The project prepares operational data for answering questions about delivery performance, inventory efficiency, profitability, and product demand.
 
-**Tableau  Dashboard Link** :  [Here](https://public.tableau.com/app/profile/poojapatel26/viz/SupplyChainAnalytics_16964651727060/SupplyChainAnalytics)
+<p align="center">
+  <img src="data/JIT_Logo.PNG" alt="Just In Time project logo" width="220" />
+</p>
 
-## Project Description :
-The project provides a real-world dataset focusing on supply chain analytics. As the main data analyst for Just In Time, you will help solve key shipment and inventory management challenges, analyze supply chain inefficiencies, and create insightful dashboards to inform business stakeholders about potential problems and propose structural business improvements.
+## Project objectives
 
-## Objective 
-In this project, my primary focus is on addressing key challenges related to shipment and inventory management within the supply chain. To achieve this goal efficiently, the project has been divided into few objectives:
+- Assess the quality of order, shipment, inventory, and fulfillment data.
+- Prepare consistent fields for reliable operational analysis.
+- Measure order-processing and shipment performance.
+- Compare product demand with warehouse inventory.
+- Identify products, categories, and departments that affect profit or storage cost.
+- Create an analysis-ready foundation for dashboards and business recommendations.
 
-## METHODOLOGY
+## Dataset
 
-Business demand analysis
+The repository includes three CSV files:
 
-Requirements: Create dashboard to analyze the business problem and improve the supply chain’s efficiency
+| File | Rows | Columns | Purpose |
+| --- | ---: | ---: | --- |
+| `Orders_and_shipments.csv` | 30,871 | 24 | Orders, customers, products, sales, discounts, profit, and shipment details |
+| `Inventory.csv` | 4,200 | 4 | Monthly warehouse inventory and inventory cost per unit |
+| `Fulfillment.csv` | 118 | 2 | Product-level warehouse fulfillment time |
 
-Method: descriptive and exploratory analysis
+Together, the datasets cover customer markets, product hierarchy, warehouse locations, shipment modes, scheduled shipment time, sales, discounts, profit, inventory, and fulfillment duration.
 
-Tool used: Python (Data preprocessing, data cleaning, EDA, inventory segmentation); Tableau (Dashboard)
+## Analysis workflow
 
-Business Performance : 
+The notebook currently performs the following preparation steps:
 
-=> Dashboard of overall business performance including Profit & Cost of Products, total profit, best products etc 
+1. Loads all three datasets with pandas.
+2. Profiles missing values, duplicate rows, schemas, and data types.
+3. Normalizes column names by removing unwanted whitespace.
+4. Cleans placeholder values in the discount field and converts it to a numeric type.
+5. Builds complete order and shipment datetime fields.
+6. Standardizes inconsistent country names and special characters.
+7. Calculates order-processing time from order to shipment.
 
-Inventory Management :
+The prepared data can then support analysis in four business areas:
 
-=> Dashboard of inventory management including warehouse inventory, Supply/Demand by Product Department, Inventory Storage Cost, Most Overstock products, Most understock products etc
+- **Business performance:** gross sales, profit, margin, and high-performing products.
+- **Inventory management:** supply versus demand, excess inventory, shortages, and storage cost.
+- **Shipment performance:** processing time, scheduled shipment time, shipment mode, and regional delays.
+- **Fulfillment:** warehouse fulfillment duration by product and category.
 
-Shipment Invenstigation :
+## Repository structure
 
-=> Dashboard of shipping management including delay shipping like % of delapy orders, overall delay evolution, shupping delay by location, Most deplayed products etc 
+```text
+Supply-Chain-Analytics/
+├── data/
+│   ├── Fulfillment.csv
+│   ├── Inventory.csv
+│   ├── JIT_Logo.PNG
+│   └── Orders_and_shipments.csv
+├── Supply_chain_analytics.ipynb
+└── README.md
+```
 
-Order Fullfillment : 
+## Getting started
 
-=> Dashboard of average warehouse inventory fullfilment by Product Category
+### 1. Clone the repository
 
-Overall story of Create an interactive dashboard to summarize the research of the problem of the supply chain and suggest the solution
+```bash
+git clone https://github.com/aromalrm/Supply-Chain-Analytics.git
+cd Supply-Chain-Analytics
+```
 
-## Data Pre-Processing & Data Cleaning 
+### 2. Create an environment and install dependencies
 
-The data pre-procesing and Data cleaning is done using Python. 
-Detailed Notebook : [Here](https://github.com/poojapatel26/Supply-Chain-Analytics/blob/main/Supply_Chain_Analytics.ipynb)
+```bash
+python -m venv .venv
+```
 
-## Data Overview 
-The dataset provides three data tables including order_and_shipment, inventory and fulfillment. After examining the data fields, I noticed that the dataset generally represents the following key information
+Activate the environment and install the packages used by the notebook:
 
-Customer: General information about customers including identifiers and addresses
+```bash
+pip install jupyter pandas numpy
+```
 
-Order: Information about the order including date of order, product and quantity ordered, order value
+### 3. Run the analysis
 
-Shipment: Shipping information including shipping date, shipping mode
+```bash
+jupyter notebook Supply_chain_analytics.ipynb
+```
 
-Product: Specific information about the ordered item including product name, product category, product department
+The notebook expects the CSV files to remain inside the `data` directory.
 
-Warehouse Inventory: Information on inventory management for each product name including monthly inventory, warehouse location, storage costs, order fulfillment
+## Key questions this project supports
 
-## Key Insights 
-**1 Profit & Cost :**
-* Most Profitable Product Department
-* Most Profitable Products
-* Goods with Highest Profit Margin
-* Highest Inventory Storage Cost
+- Which products and departments generate the strongest profit?
+- Where does available inventory fall below product demand?
+- Which products create unnecessary inventory carrying costs?
+- Which markets, regions, or shipment modes experience longer processing times?
+- Which products require the most warehouse fulfillment time?
 
-**2 Inventory Analysis :**
-* Supply Vs Demand
-* Overstock Product Category :
-* Under stock Product Category :
+## Current scope
 
-**3 Shipment Delay Analysis:**
-
-**4 Order Fulfillment Days:**
-
-Detailed analysis including feature metric, Key insights and suggestion can be found of medium Blog Post : [Here](https://medium.com/@poojapatel26/moving-from-complexity-to-clarity-in-supply-chain-08fe4f8eb2d2)
-
-## Sugesstions 
-
-**Optimize Product Inventory :**
-To improve profits and save on storage costs, we need to optimize our inventory, especially for most profitable and popular products worldwide. It is important to study demand patterns and adjust stock levels to avoid running out during peak periods and reduce excess inventory during slower times. Maintaining a reasonable buffer above expected demand during busy seasons can prevent shortages and optimize inventory expenses.
-
-**Reorganize Inventory Distribution :**
-The Fan Shop department’s inventory is insufficient compared to its demand, which may result in missed the sales opportunities. The company should take steps to increase inventory
-Consider reorganizing inventory distribution between warehouses to reduce shipment delays. Minimizing delays in highly demand products can improve customer satisfaction.
-
-**Marketing Strategies :**
-Focus on promoting products with the highest profit margins to increase overall revenue. Consider advertising the top products with the highest profit margins and offer targeted discounts during peak seasons to boost sales and customer engagement.
-
-**Monitor Shipment Delays :**
-A further analysis is needed to identify the reasons for shipment delays and implement corrective measures to reduce them. Analyzing shipment processes and addressing potential bottlenecks can lead to improved fulfillment efficiency and customer satisfaction.
+This repository contains the source datasets and the Python data-preparation notebook. Dashboard files and production data pipelines are outside the current scope. Dataset findings should be treated as portfolio analysis rather than real-time operational reporting.
